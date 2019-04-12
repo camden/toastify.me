@@ -1,0 +1,36 @@
+.resume {
+  max-width: 600px;
+  margin-bottom: 64px;
+  color: #333;
+}
+
+.resume .section-title {
+  font-weight: bold;
+  margin-right: 1ch;
+}
+
+.resume .subtitle {
+  font-style: oblique;
+  margin-bottom: 16px;
+}
+
+.resume h2:first-of-type {
+  margin-top: 64px;
+}
+
+.resume h2 {
+  text-transform: uppercase;
+  letter-spacing: 16px;
+  margin-top: 64px;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 100;
+  line-height: 1.1;
+}
+
+.resume h3 {
+  font-weight: bold;
+  font-family: "Merriweather", serif;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}

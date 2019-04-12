@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "Julia Ruiz Borys",
+    "interests": "Systems-thinking, Human-centric design, Sustainability, Contemporary art, Animation, Food"
+  },
+  "work": [
+    {
+      "company": "TJX Corp - Marshalls",
+      "position": "Graphic Design Co-op",
+      "startDate": "2018-06-04",
+      "endDate": "2018-08-24",
+      "summary": "",
+      "highlights": [
+        "Styled, directed & edited Marshalls’ Instagram Stories.",
+        "Created complete illustration deck for Winter Social Campaign.",
+        "Designed typography & color pallate for Wellness Social Campaign.",
+        "Ideated, designed, and presented stills & animations for Marshalls websites & social media using After Effects, Photoshop, and InDesign.",
+        "Supported designers by assembling presentation decks, creating photoshop mock-ups, and physical comps."
+      ]
+    },
+    {
+      "company": "ScholarJet",
+      "position": "Social Media Marketing Internn",
+      "startDate": "2018-01-09",
+      "endDate": "2018-05-25",
+      "summary": "",
+      "highlights": [
+        "Created and managed social media assets.",
+        "Worked with CEO and COO to create initial marketing strategy."
+      ]
+    },
+    {
+      "company": "Okta",
+      "position": "Information Development Co-op",
+      "startDate": "2017-01-09",
+      "endDate": "2017-07-09",
+      "summary": "",
+      "highlights": [
+        "Built & iterated first versions of help.okta.com info architecture.",
+        "Designed, prototyped, & tested automation tool for the Release Notes editing & publishing process, increasing efficiency by 300%.",
+        "Introduced design-thinking practices for Info-Dev team scalability.",
+        "Published weekly Release Notes with software updates & bug fixes.",
+        "Wrote customer-facing documentation for Okta Mobile Dev teams."
+      ]
+    },
+    {
+      "company": "Propaganando Inc",
+      "position": "Design Intern",
+      "startDate": "2016-05-03",
+      "endDate": "2016-08-20",
+      "summary": "",
+      "highlights": [
+        "Collaborated with another artist to create a logo for KissyPig, a recording studio in Boston, MA using the Creative Suite",
+        "Organized a 5K in the form of a scavenger hunt, that promoted exercise and required donations to the Food Bank for eligibility",
+        "Redesigned the menu and ambient of Jazzy Burgers, a local diner"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Northeastern University",
+      "college": "D’Amore-McKim School of Business",
+      "area": "Candidate for Bachelor of Science Degree in Business Administration",
+      "subarea": "",
+      "gpa": "3.65 / 4.00 GPA",
+      "studyType": "Bachelor of Science",
+      "startDate": "2015-09-02",
+      "endDate": "Present (Expected Spring 2020)",
+      "awards": "University Scholars Program: Full tuition scholarship awarded to top 1% of students on basis of academic achievement, leadership, and service.",
+      "activities": "Latin American Student Organization (LASO) Executive Board, San Francisco Co-op Connector"
+    }
+  ],
+  "skills": [
+    {
+      "type": "Design",
+      "list": [
+        "Intermediate: Adobe Creative Cloud (Illustrator, Photoshop, InDesign)",
+        "Proficient: Adobe After Effects"
+      ]
+    },
+    {
+      "type": "Marketing & Data Analytics",
+      "list": [
+        "Expert: Social Media (Facebook, Twitter, Instagram, Pinterest, Tumblr",
+        "Experienced: SPSS, R Studio, Google Analytics, Tableau, Canva, VMWare"
+      ]
+    },
+    {
+      "type": "Languages",
+      "list": [
+        "Fluent: English, Spanish",
+        "Coversational: Polish, French"
+      ]
+    }
+  ]
+}

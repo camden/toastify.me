@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes mainContentAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio-wrapper {
+  padding: 16px 0;
+}

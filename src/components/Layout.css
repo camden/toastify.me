@@ -1,0 +1,10 @@
+.layout-wrapper {
+  padding: 0 128px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 960px) {
+  .layout-wrapper {
+    padding: 0 32px;
+  }
+}
