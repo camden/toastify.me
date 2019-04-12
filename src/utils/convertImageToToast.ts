@@ -1,3 +1,6 @@
+import camvas from "./camvas"
+import camera from "./camera"
+
 // https://gist.github.com/n1ru4l/dc99062577b746e0783410b1298ab897
 const convertBlobToBase64 = (blob): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -9,8 +12,8 @@ const convertBlobToBase64 = (blob): Promise<string> =>
     reader.readAsDataURL(blob)
   })
 
-const WIDTH = 200
-const HEIGHT = 200
+const WIDTH = 1000
+const HEIGHT = 1000
 
 const getBase64Image = async (): Promise<string> => {
   const data = await fetch(`https://placekitten.com/${WIDTH}/${HEIGHT}`).then(
@@ -43,7 +46,7 @@ const getCharacterForColor = color => {
   const brightness = 0.2126 * color.r + 0.7152 * color.g + 0.0722 * color.b
   const brightnessRatio = brightness / 255
 
-  const charMap = [
+  const unusedCharMap = [
     "⚪",
     "🐇",
     "🌝",
@@ -56,6 +59,8 @@ const getCharacterForColor = color => {
     "🌚",
     "⚫",
   ]
+
+  const charMap = ["🥚", "🍞", "🥖", "🧀", "🥑", "🌿", "🐟", "🍅", "🍳", " "]
 
   const char =
     charMap[
@@ -78,8 +83,8 @@ const toastify = (
 
   let characters = ""
 
-  for (let y = 0; y < HEIGHT; y += 2) {
-    for (let x = 0; x < WIDTH; x += 2) {
+  for (let y = 0; y < HEIGHT; y += 10) {
+    for (let x = 0; x < WIDTH; x += 10) {
       const colorIdx = getColorIndicesForCoord(x, y, WIDTH)
       const color = {
         r: colorData[colorIdx.r],
@@ -97,9 +102,12 @@ const toastify = (
 
   ctx.putImageData(imageData, 0, 0)
 
+  target.clearRect(0, 0, WIDTH, HEIGHT)
+  target.beginPath()
+
   // console.log("%c" + characters, "font-size: 5px")
-  target.font = "8px Courier"
-  const lineHeight = 8
+  target.font = "12px Courier"
+  const lineHeight = 12
   const lines = characters.split("\n")
   for (let i = 0; i < lines.length; i++) {
     target.fillStyle = "black"
@@ -118,14 +126,20 @@ const convertImageToToast = async () => {
 
   canvas.style.display = "none"
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
   const img = new Image()
   img.src = imgBase64
 
-  ctx.drawImage(img, 0, 0)
-
-  toastify(ctx, toastCtx)
+  camera.init({
+    width: 1000,
+    height: 1000,
+    fps: 30,
+    mirror: true,
+    // targetCanvas: toastCanvas,
+    onFrame: c => {
+      const ctx2 = c.getContext("2d")
+      toastify(ctx2, toastCtx)
+    },
+  })
 }
 
 export default convertImageToToast

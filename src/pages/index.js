@@ -20,12 +20,11 @@ const IndexPage = ({ data }) => {
         <title>toastcards</title>
       </Helmet>
       <div className="site-wrapper">
-        <SiteHeader />
-        <main className="portfolio-wrapper">
+        <div className="title">toastify.me</div>
+        <main className="toast-wrapper">
           <canvas id="normal-image" width={200} height={200} />
           <canvas id="toast-image" width={1000} height={1000} />
         </main>
-        <footer className="site-footer" />
       </div>
     </Layout>
   )
