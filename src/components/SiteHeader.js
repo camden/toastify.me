@@ -5,9 +5,7 @@ import "./SiteHeader.css"
 
 export default () => (
   <section className="site-header">
-    <Link to="/">
-      <div className="site-title">toastcards</div>
-    </Link>
+    <Link to="/">{/* <div className="site-title">toastcards</div> */}</Link>
     {/* <div className="site-link-area">
       <Link to="/resume">
         <div className="site-link">Résumé</div>

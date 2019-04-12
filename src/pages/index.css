@@ -26,3 +26,9 @@ body {
 .portfolio-wrapper {
   padding: 16px 0;
 }
+
+canvas {
+  /* border: 1px solid #333; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+}
