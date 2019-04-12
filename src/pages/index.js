@@ -22,7 +22,8 @@ const IndexPage = ({ data }) => {
       <div className="site-wrapper">
         <SiteHeader />
         <main className="portfolio-wrapper">
-          <canvas id="normal-image" width={50} height={50} />
+          <canvas id="normal-image" width={200} height={200} />
+          <canvas id="toast-image" width={1000} height={1000} />
         </main>
         <footer className="site-footer" />
       </div>
