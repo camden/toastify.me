@@ -10,7 +10,7 @@ const convertBlobToBase64 = (blob): Promise<string> =>
   })
 
 const getBase64Image = async (): Promise<string> => {
-  const data = await fetch("https://placekitten.com/200/200").then(res =>
+  const data = await fetch("https://placekitten.com/50/50").then(res =>
     res.blob()
   )
 
@@ -20,33 +20,69 @@ const getBase64Image = async (): Promise<string> => {
   return base64
 }
 
-const WIDTH = 200
-const HEIGHT = 200
+const WIDTH = 50
+const HEIGHT = 50
+
+const getColorIndicesForCoord = (x, y, width) => {
+  const startIdx = (y * width + x) * 4
+
+  return {
+    r: startIdx,
+    g: startIdx + 1,
+    b: startIdx + 2,
+    a: startIdx + 3,
+  }
+}
 
 const handleMouseMove = (ctx: CanvasRenderingContext2D, event) => {
   const { layerX: mouseX, layerY: mouseY } = event
 
   const imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
-  const pixel = ctx.getImageData(mouseX, mouseY, 1, 1)
-  const colorData = pixel.data
-  const [r, g, b, a] = colorData
+  const colorData = imageData.data
 
   var grayscale = function() {
     for (var i = 0; i < colorData.length; i += 4) {
       var avg = (colorData[i] + colorData[i + 1] + colorData[i + 2]) / 3
-      colorData[i] = avg // red
-      colorData[i + 1] = avg // green
-      colorData[i + 2] = avg // blue
+      colorData[i] = colorData[i] + 1 // red
+      colorData[i + 1] = colorData[i + 1] - 1 // green
+      colorData[i + 2] = colorData[i + 2] + 1 // blue
     }
     ctx.putImageData(imageData, 0, 0)
   }
+}
 
-  grayscale()
+const bound = (value, interval) => {
+  return Math.max(interval[0], Math.min(interval[1], value))
+}
 
-  console.log(
-    "%c[]",
-    `background-color: rgba(${r}, ${g}, ${b}, ${a}); font-size: 40px;`
-  )
+const getCharacterForColor = ({ r, g, b, a }) => {
+  const contrast = 128
+  return "O"
+}
+
+const toastify = (ctx: CanvasRenderingContext2D) => {
+  // Original code by Jacob Seidelin (http://www.nihilogic.dk/labs/jsascii/)
+  // Heavily modified by Andrei Gheorghe (http://github.com/idevelop)
+  // Heavily modified on top of that by Camden Bickel https://github.com/camden
+
+  const imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
+  const colorData = imageData.data
+
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      const colorIdx = getColorIndicesForCoord(x, y, WIDTH)
+      const color = {
+        r: colorData[colorIdx.r],
+        g: colorData[colorIdx.g],
+        b: colorData[colorIdx.b],
+        a: colorData[colorIdx.a],
+      }
+
+      console.log(color)
+    }
+  }
+
+  ctx.putImageData(imageData, 0, 0)
 }
 
 const convertImageToToast = async () => {
@@ -54,9 +90,6 @@ const convertImageToToast = async () => {
 
   const canvas = <HTMLCanvasElement>document.getElementById("normal-image")
   const ctx = canvas.getContext("2d")
-  canvas.addEventListener("mousemove", (...args) =>
-    handleMouseMove(ctx, ...args)
-  )
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -68,8 +101,7 @@ const convertImageToToast = async () => {
 
   ctx.drawImage(img, 0, 0)
 
-  const imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
-  console.log(imgData)
+  toastify(ctx)
 }
 
 export default convertImageToToast
