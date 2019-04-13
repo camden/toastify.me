@@ -23,11 +23,18 @@ body {
   }
 }
 
-.title {
+#info-message {
+  transition: all 150ms ease;
+}
+
+.title-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   padding: 16px;
+}
+
+.title {
   font-size: 2.4rem;
   font-family: "Ultra", serif;
   text-decoration: none;

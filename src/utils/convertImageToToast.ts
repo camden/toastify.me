@@ -12,19 +12,8 @@ const convertBlobToBase64 = (blob): Promise<string> =>
     reader.readAsDataURL(blob)
   })
 
-const WIDTH = 1000
-const HEIGHT = 1000
-
-const getBase64Image = async (): Promise<string> => {
-  const data = await fetch(`https://placekitten.com/${WIDTH}/${HEIGHT}`).then(
-    res => res.blob()
-  )
-
-  const base64 = await convertBlobToBase64(data)
-
-  console.log(base64)
-  return base64
-}
+const WIDTH = 1024
+const HEIGHT = 1024
 
 const getColorIndicesForCoord = (x, y, width) => {
   const startIdx = (y * width + x) * 4
@@ -60,7 +49,19 @@ const getCharacterForColor = color => {
     "⚫",
   ]
 
-  const charMap = ["🥚", "🍞", "🥖", "🧀", "🥑", "🌿", "🐟", "🍅", "🍳", " "]
+  const charMap = [
+    "🥚",
+    "🍞",
+    "🍞",
+    "🍞",
+    "🧀",
+    "🥑",
+    "🥒",
+    "🐟",
+    "🍅",
+    "🍳",
+    " ",
+  ]
 
   const char =
     charMap[
@@ -116,18 +117,12 @@ const toastify = (
 }
 
 const convertImageToToast = async () => {
-  const imgBase64 = await getBase64Image()
-
-  const canvas = <HTMLCanvasElement>document.getElementById("normal-image")
-  const ctx = canvas.getContext("2d")
-
   const toastCanvas = <HTMLCanvasElement>document.getElementById("toast-image")
   const toastCtx = toastCanvas.getContext("2d")
 
-  canvas.style.display = "none"
-
-  const img = new Image()
-  img.src = imgBase64
+  const info = document.getElementById("info-message")
+  const success = document.getElementById("success-message")
+  success.style.display = "none"
 
   camera.init({
     width: 1000,
@@ -139,7 +134,17 @@ const convertImageToToast = async () => {
       const ctx2 = c.getContext("2d")
       toastify(ctx2, toastCtx)
     },
+    onSuccess: () => {
+      info.style.opacity = "0"
+      success.style.display = "block"
+    },
   })
+
+  const pauseButton = (document.getElementById("pause-button").onclick = () =>
+    camera.pause())
+
+  const startButton = (document.getElementById("resume-button").onclick = () =>
+    camera.start())
 }
 
 export default convertImageToToast

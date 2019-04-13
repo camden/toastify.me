@@ -1,8 +1,6 @@
 import React, { useEffect } from "react"
-import { Link, graphql } from "gatsby"
 import Helmet from "react-helmet"
 
-import RecipeCard from "components/RecipeCard"
 import SiteHeader from "components/SiteHeader"
 import Layout from "components/Layout"
 
@@ -20,10 +18,16 @@ const IndexPage = ({ data }) => {
         <title>toastcards</title>
       </Helmet>
       <div className="site-wrapper">
-        <div className="title">toastify.me</div>
+        <div className="title-wrapper">
+          <div className="title">toastify.me</div>
+          <div id="info-message">Enable your camera to get started! 🍞</div>
+          <div id="success-message">
+            <button id="pause-button">Pause</button>
+            <button id="resume-button">Resume</button>
+          </div>
+        </div>
         <main className="toast-wrapper">
-          <canvas id="normal-image" width={200} height={200} />
-          <canvas id="toast-image" width={1000} height={1000} />
+          <canvas id="toast-image" width={1024} height={1024} />
         </main>
       </div>
     </Layout>
