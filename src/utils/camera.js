@@ -11,7 +11,7 @@ import getUserMedia from 'get-user-media-promise'
 const CONFIG = {
   audio: false,
   video: {
-    facingMode: "environment",
+    facingMode: "user",
   },
 }
 
