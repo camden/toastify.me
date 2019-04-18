@@ -1,4 +1,3 @@
-import camvas from "./camvas"
 import camera from "./camera"
 
 // https://gist.github.com/n1ru4l/dc99062577b746e0783410b1298ab897

@@ -6,44 +6,45 @@
 	License: MIT
 */
 
-var camera = (function() {
+import getUserMedia from 'get-user-media-promise'
+
+const CONFIG = {
+  audio: false,
+  video: {
+    facingMode: "environment",
+  },
+}
+
+var camera = (function () {
   var options
   var video, canvas, context
   var renderTimer
 
-  function initVideoStream() {
+  function onSuccess(stream) {
+    options.onSuccess()
+
+    try {
+      video.srcObject = stream
+    } catch (e) {
+      video.src = (window.URL && window.URL.createObjectURL(stream)) || stream
+    }
+
+    initCanvas()
+  }
+
+  const initVideoStream = async () => {
     video = document.createElement("video")
     video.setAttribute("width", options.width)
     video.setAttribute("height", options.height)
+    video.setAttribute("autoplay", "")
+    video.setAttribute("muted", "")
+    video.setAttribute("playsinline", "")
 
-    navigator.getUserMedia =
-      navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia
-    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL
-
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia(
-        {
-          video: true,
-        },
-        function(stream) {
-          options.onSuccess()
-
-          try {
-            video.srcObject = stream
-          } catch (e) {
-            video.src =
-              (window.URL && window.URL.createObjectURL(stream)) || stream
-          }
-
-          initCanvas()
-        },
-        options.onError
-      )
-    } else {
-      options.onNotSupported()
+    try {
+      const stream = await getUserMedia(CONFIG)
+      onSuccess(stream)
+    } catch (e) {
+      alert(e)
     }
   }
 
@@ -66,7 +67,7 @@ var camera = (function() {
   function startCapture() {
     video.play()
 
-    renderTimer = setInterval(function() {
+    renderTimer = setInterval(function () {
       try {
         context.drawImage(video, 0, 0, video.width, video.height)
         options.onFrame(canvas)
@@ -92,8 +93,8 @@ var camera = (function() {
   }
 
   return {
-    init: function(captureOptions) {
-      var doNothing = function() {}
+    init: function (captureOptions) {
+      var doNothing = function () { }
 
       options = captureOptions || {}
 
